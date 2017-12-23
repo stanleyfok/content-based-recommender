@@ -1,0 +1,30 @@
+{
+  "name": "content-based-recommender",
+  "version": "1.0.0",
+  "description": "A simple content-based recommender implemented in javascript",
+  "homepage": "https://github.com/stanleyfok/content-based-recommender",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stanleyfok/content-based-recommender.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint '**/*.js'",
+    "eslint-fix": "./node_modules/.bin/eslint --fix '**/*.js'",
+    "test": "./node_modules/.bin/mocha test/**/*.js"
+  },
+  "keywords": [
+    "content-based",
+    "filtering",
+    "recommender",
+    "tdidf",
+    "machine",
+    "learning"
+  ],
+  "author": "Stanley Fok <stanleyfok@gmail.com> (https://github.com/stanleyfok)",
+  "license": "MIT",
+  "dependencies": {
+    "natural": "^0.5.4",
+    "vector-object": "^1.1.10"
+  }
+}
