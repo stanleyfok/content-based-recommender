@@ -59,24 +59,26 @@ recommender.train()
 
 ### constructor([options])
 
-to create the recommender instance
+To create the recommender instance
 
 * options (optional): to configure the recommender (**in development**)
 
 ### train(documents, [callback])
 
-to tell the recommender about your documents and then it will start training itself. Promise is supported.
+To tell the recommender about your documents and then it will start training itself. Promise is supported.
 
-* documents: an array of object, with field **id** and **content**
+* documents: an array of object, with fields **id** and **content**
 * callback (optional): callback function to be trigger after trainning is done
 
 ### getSimilarItems(id, start, [size])
 
-to get an array of similar items with document id
+To get an array of similar items with document id
 
 * id: the id of the document
 * start: the start index, inclusive
 * size: the max number of similar documents to obtain. If it is omitted, the whole list after start index will be returned
+
+It returns an array of objects, with fields **id** and **score** (ranging from 0 to 1)
 
 ## Test
 
