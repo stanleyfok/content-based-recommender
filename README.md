@@ -59,9 +59,7 @@ recommender.train()
 
 to create the recommender instance
 
-* options (optional): to configure the recommender
-
-**in development**
+* options (optional): to configure the recommender (**in development**)
 
 ### train(documents, [callback])
 
