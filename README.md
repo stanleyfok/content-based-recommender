@@ -11,6 +11,8 @@ The training process involves 3 main steps:
 * document vectors formation using [tf-idf](https://lizrush.gitbooks.io/algorithms-for-webdevs-ebook/content/chapters/tf-idf.html)
 * find the [cosine similarities](https://en.wikipedia.org/wiki/Cosine_similarity) between all document vectors
 
+The similarity scores are finally stored in sorted sets data structure, thanks to the javascript implementation of (redis sorted set)[https://www.npmjs.com/package/redis-sorted-set].
+
 ## Usage
 
 ```js
@@ -63,14 +65,14 @@ to create the recommender instance
 
 ### train(documents, [callback])
 
-tell the recommender about your documents and then it will start training itself. Promise is supported.
+to tell the recommender about your documents and then it will start training itself. Promise is supported.
 
 * documents: an array of object, with field **id** and **content**
 * callback (optional): callback function to be trigger after trainning is done
 
 ### getSimilarItems(id, start, [size])
 
-get an array of similar items with document id
+to get an array of similar items with document id
 
 * id: the id of the document
 * start: the start index, inclusive
