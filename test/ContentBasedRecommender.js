@@ -1,14 +1,4 @@
-Content Based Recommender
-=======
-
-Still under construction...
-
-## Usage
-
-Still in design phase
-
-```js
-const ContentBasedRecommender = require('content-based-recommender')
+const ContentBasedRecommender = require('../')
 const recommender = new ContentBasedRecommender();
 
 // prepare item data
@@ -29,4 +19,3 @@ recommender.train()
     console.log(recommender.getSimilarItems('1000002', 0, 10));
     console.log(recommender.getSimilarItems('1000003', 0, 10));
   });
-```

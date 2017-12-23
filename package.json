@@ -24,7 +24,18 @@
   "author": "Stanley Fok <stanleyfok@gmail.com> (https://github.com/stanleyfok)",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "natural": "^0.5.4",
+    "redis-sorted-set": "^2.0.0",
+    "stopword": "^0.1.9",
+    "striptags": "^3.1.1",
     "vector-object": "^1.1.10"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "mocha": "^4.0.1"
   }
 }
