@@ -9,7 +9,7 @@ This is a simple content-based recommender implemented in javascript to illustra
 The training process involves 3 main steps:
 * content preprocessing, such as html tag stripping, stopword removal and [stemming](http://9ol.es/porter_js_demo.html)
 * document vectors formation using [tf-idf](https://lizrush.gitbooks.io/algorithms-for-webdevs-ebook/content/chapters/tf-idf.html)
-* find the [cosine similarities](https://en.wikipedia.org/wiki/Cosine_similarity) between all document vectors
+* find the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) scores between all document vectors
 
 The similarity scores are finally stored in sorted sets data structure, thanks to the javascript implementation of [redis sorted set](https://www.npmjs.com/package/redis-sorted-set).
 
