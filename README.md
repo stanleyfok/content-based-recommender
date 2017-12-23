@@ -1,11 +1,17 @@
 Content Based Recommender
 =======
 
-Still under construction...
+[![Build Status](https://travis-ci.org/stanleyfok/content-based-recommender.png?branch=master)](https://travis-ci.org/stanleyfok/content-based-recommender)
+[![NPM version](https://img.shields.io/npm/v/content-based-recommender.svg)](https://www.npmjs.com/package/content-based-recommender)
+
+This is a simple content-based recommender implemented in javascript to illustrate the concept of content-based recommendation. After the recommender is trained by an array of documents, it can tell the list of documents which are more similar to the input document.
+
+The training process involves 2 main steps:
+* content preprocessing, such as html tag stripping, stopword removal and [stemming](http://9ol.es/porter_js_demo.html)
+* document vectors formation using [tf-idf](https://lizrush.gitbooks.io/algorithms-for-webdevs-ebook/content/chapters/tf-idf.html)
+* find the [cosine similarities](https://en.wikipedia.org/wiki/Cosine_similarity) between all document vectors
 
 ## Usage
-
-Still in design phase
 
 ```js
 const ContentBasedRecommender = require('content-based-recommender')
@@ -47,3 +53,47 @@ recommender.train()
     */
   });
 ```
+## API
+
+### constructor(options)
+
+to create the recommender instance
+
+options (optional): to configure the recommender
+
+**in development**
+
+### train(documents)
+
+tell the recommender about your documents and then it will start training itself.
+
+documents: an array of object, with field **id** and **content**
+
+### getSimilarItems(id, start, size)
+
+get an array of similar items with document id
+
+id: the id of the document
+start: the start index, inclusive
+size: the max number of similar documents to obtain
+
+## Test
+
+```bash
+npm install
+npm run test
+```
+
+## To-Dos
+
+* add test cases
+* add options for preprocessing options
+* add export and import method for the Recommender
+
+## Authors
+
+  - [Stanley Fok](https://github.com/stanleyfok)
+
+## License
+
+  [MIT](./LICENSE)

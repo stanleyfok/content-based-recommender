@@ -15,11 +15,8 @@ const documents = [
   { id: '1000009', content: 'Is it possible to use javascript for machine learning?' },
 ];
 
-// set data to recommender
-recommender.setDocuments(documents);
-
 // start training
-recommender.train()
+recommender.train(documents)
   .then(() => {
   // get top 10 similar items to document 1000002
     const similarItems = recommender.getSimilarItems('1000002', 0, 10);
