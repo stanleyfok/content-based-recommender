@@ -6,7 +6,7 @@ Content Based Recommender
 
 This is a simple content-based recommender implemented in javascript to illustrate the concept of content-based recommendation. After the recommender is trained by an array of documents, it can tell the list of documents which are more similar to the input document.
 
-The training process involves 2 main steps:
+The training process involves 3 main steps:
 * content preprocessing, such as html tag stripping, stopword removal and [stemming](http://9ol.es/porter_js_demo.html)
 * document vectors formation using [tf-idf](https://lizrush.gitbooks.io/algorithms-for-webdevs-ebook/content/chapters/tf-idf.html)
 * find the [cosine similarities](https://en.wikipedia.org/wiki/Cosine_similarity) between all document vectors
@@ -17,7 +17,7 @@ The training process involves 2 main steps:
 const ContentBasedRecommender = require('content-based-recommender')
 const recommender = new ContentBasedRecommender();
 
-// prepare document data
+// prepare documents data
 const documents = [
   { id: '1000001', content: 'Why studying javascript is fun?' },
   { id: '1000002', content: 'The trend for javascript in machine learning' },
@@ -55,27 +55,28 @@ recommender.train()
 ```
 ## API
 
-### constructor(options)
+### constructor([options])
 
 to create the recommender instance
 
-options (optional): to configure the recommender
+* options (optional): to configure the recommender
 
 **in development**
 
-### train(documents)
+### train(documents, [callback])
 
-tell the recommender about your documents and then it will start training itself.
+tell the recommender about your documents and then it will start training itself. Promise is supported.
 
-documents: an array of object, with field **id** and **content**
+* documents: an array of object, with field **id** and **content**
+* callback (optional): callback function to be trigger after trainning is done
 
-### getSimilarItems(id, start, size)
+### getSimilarItems(id, start, [size])
 
 get an array of similar items with document id
 
-id: the id of the document
-start: the start index, inclusive
-size: the max number of similar documents to obtain
+* id: the id of the document
+* start: the start index, inclusive
+* size: the max number of similar documents to obtain. If it is omitted, the whole list after start index will be returned
 
 ## Test
 
