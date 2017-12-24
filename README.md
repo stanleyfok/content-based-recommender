@@ -37,24 +37,23 @@ const documents = [
 ];
 
 // start training
-recommender.train(documents)
-  .then(() => {
-    //get top 10 similar items to document 1000002
-    const similarItems = recommender.getSimilarDocuments('1000002', 0, 10);
+recommender.train(documents);
 
-    console.log(similarItems);
-    /*
-      the higher the score, the more similar the item is
-      [
-        { id: '1000009', score: 0.43529868463164245 },
-        { id: '1000004', score: 0.4112506830931031 },
-        { id: '1000005', score: 0.32986852711159986 },
-        { id: '1000003', score: 0.1422285906657209 },
-        { id: '1000006', score: 0.12457999641759732 },
-        { id: '1000001', score: 0.11885606218309874 }
-      ]
-    */
-  });
+//get top 10 similar items to document 1000002
+const similarItems = recommender.getSimilarDocuments('1000002', 0, 10);
+
+console.log(similarItems);
+/*
+  the higher the score, the more similar the item is
+  [
+    { id: '1000009', score: 0.43529868463164245 },
+    { id: '1000004', score: 0.4112506830931031 },
+    { id: '1000005', score: 0.32986852711159986 },
+    { id: '1000003', score: 0.1422285906657209 },
+    { id: '1000006', score: 0.12457999641759732 },
+    { id: '1000001', score: 0.11885606218309874 }
+  ]
+*/
 ```
 ## API
 
@@ -89,11 +88,10 @@ It returns an array of objects, with fields **id** and **score** (ranging from 0
 To export the recommender as json object.
 ```js
 const recommender = new ContentBasedRecommender();
-recommender.train(documents)
-  .then(() => {
-    const object = recommender.export();
-    //can save the object to disk, database or otherwise
-  })
+recommender.train(documents);
+
+const object = recommender.export();
+//can save the object to disk, database or otherwise
 ```
 
 ### import(object)
