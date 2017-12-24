@@ -1,21 +1,65 @@
+const chai = require('chai');
 const ContentBasedRecommender = require('../');
+
+chai.should();
+
+const documents = require('../fixtures/sample-documents');
 
 const recommender = new ContentBasedRecommender();
 
-// prepare document data
-const documents = [
-  { id: '1000001', content: 'Why studying javascript is fun?' },
-  { id: '1000002', content: 'The trend for javascript in machine learning' },
-  { id: '1000003', content: 'The most insightful stories about JavaScript' },
-  { id: '1000004', content: 'Introduction to Machine Learning' },
-  { id: '1000005', content: 'Machine learning and its application' },
-  { id: '1000006', content: 'Python vs Javascript, which is better?' },
-  { id: '1000007', content: 'How Python saved my life?' },
-  { id: '1000008', content: 'The future of Bitcoin technology' },
-  { id: '1000009', content: 'Is it possible to use javascript for machine learning?' },
-];
+describe('ContentBasedRecommender', () => {
+  describe('input validation', () => {
+    it('should only accept array of documents', () => {
+      (() => {
+        recommender.train({
+          1000001: 'Hello World',
+          1000002: 'I love programming!',
+        });
+      }).should.to.throw('Documents should be an array of objects');
+    });
+
+    it('should only accept array of documents, with fields id and content', () => {
+      (() => {
+        recommender.train([
+          { name: '1000001', text: 'Hello World' },
+          { name: '1000002', text: 'I love programming!' },
+        ]);
+      }).should.to.throw('Documents should be have fields id and content');
+    });
+  });
+
+  describe('training result validation', () => {
+    it('should return list of similar documents in right order', (done) => {
+      recommender.train(documents)
+        .then(() => {
+          const similarDocuments = recommender.getSimilarDocuments('1000002', 0);
+
+          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004', '1000005', '1000003', '1000006', '1000001']);
+
+          done();
+        });
+    });
+
+    it('should to be able to control how many similar documents to obtain', (done) => {
+      recommender.train(documents)
+        .then(() => {
+          let similarDocuments = recommender.getSimilarDocuments('1000002', 0, 2);
+          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004']);
+
+          similarDocuments = recommender.getSimilarDocuments('1000002', 2);
+          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000005', '1000003', '1000006', '1000001']);
+
+          similarDocuments = recommender.getSimilarDocuments('1000002', 1, 3);
+          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000004', '1000005', '1000003']);
+
+          done();
+        });
+    });
+  });
+});
 
 // start training
+/*
 recommender.train(documents)
   .then(() => {
   // get top 10 similar items to document 1000002
@@ -23,3 +67,4 @@ recommender.train(documents)
 
     console.log(similarItems);
   });
+*/

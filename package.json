@@ -29,6 +29,7 @@
     "redis-sorted-set": "^2.0.0",
     "stopword": "^0.1.9",
     "striptags": "^3.1.1",
+    "underscore": "^1.8.3",
     "vector-object": "^1.1.10"
   },
   "devDependencies": {

@@ -39,7 +39,7 @@ recommender.setDocuments(documents);
 recommender.train()
   .then(() => {
     //get top 10 similar items to document 1000002
-    const similarItems = recommender.getSimilarItems('1000002', 0, 10);
+    const similarItems = recommender.getSimilarDocuments('1000002', 0, 10);
 
     console.log(similarItems);
     /*
@@ -70,12 +70,12 @@ To tell the recommender about your documents and then it will start training its
 * documents: an array of object, with fields **id** and **content**
 * callback (optional): callback function to be trigger after trainning is done
 
-### getSimilarItems(id, start, [size])
+### getSimilarDocuments(id, [start], [size])
 
 To get an array of similar items with document id
 
 * id: the id of the document
-* start: the start index, inclusive
+* start: the start index, inclusive. Default to be 0
 * size: the max number of similar documents to obtain. If it is omitted, the whole list after start index will be returned
 
 It returns an array of objects, with fields **id** and **score** (ranging from 0 to 1)
