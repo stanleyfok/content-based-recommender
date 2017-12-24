@@ -64,12 +64,11 @@ Supported options:
 
 * maxVectorSize - the control the max size of word vector after tf-idf processing. A smaller vector size will help training improvement while not affecting recommendation quality. Defaults to be 100.
 
-### train(documents, [callback])
+### train(documents)
 
-To tell the recommender about your documents and then it will start training itself. Promise is supported.
+To tell the recommender about your documents and then it will start training itself.
 
 * documents - an array of object, with fields **id** and **content**
-* callback (optional) - callback function to be trigger after trainning is done
 
 ### getSimilarDocuments(id, [start], [size])
 

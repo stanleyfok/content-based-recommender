@@ -29,46 +29,30 @@ describe('ContentBasedRecommender', () => {
   });
 
   describe('training result validation', () => {
-    it('should return list of similar documents in right order', (done) => {
-      recommender.train(documents)
-        .then(() => {
-          const similarDocuments = recommender.getSimilarDocuments('1000002', 0);
+    it('should return list of similar documents in right order', () => {
+      recommender.train(documents);
 
-          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004', '1000005', '1000003', '1000006', '1000001']);
+      const similarDocuments = recommender.getSimilarDocuments('1000002', 0);
 
-          done();
-        });
+      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004', '1000005', '1000003', '1000006', '1000001']);
     });
 
-    it('should also work using callback', (done) => {
-      recommender.train(documents, () => {
-        const similarDocuments = recommender.getSimilarDocuments('1000002', 0);
+    it('should to be able to control how many similar documents to obtain', () => {
+      recommender.train(documents);
 
-        similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004', '1000005', '1000003', '1000006', '1000001']);
+      let similarDocuments = recommender.getSimilarDocuments('1000002', 0, 2);
+      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004']);
 
-        done();
-      });
-    });
+      similarDocuments = recommender.getSimilarDocuments('1000002', 2);
+      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000005', '1000003', '1000006', '1000001']);
 
-    it('should to be able to control how many similar documents to obtain', (done) => {
-      recommender.train(documents)
-        .then(() => {
-          let similarDocuments = recommender.getSimilarDocuments('1000002', 0, 2);
-          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004']);
-
-          similarDocuments = recommender.getSimilarDocuments('1000002', 2);
-          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000005', '1000003', '1000006', '1000001']);
-
-          similarDocuments = recommender.getSimilarDocuments('1000002', 1, 3);
-          similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000004', '1000005', '1000003']);
-
-          done();
-        });
+      similarDocuments = recommender.getSimilarDocuments('1000002', 1, 3);
+      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000004', '1000005', '1000003']);
     });
   });
 
   describe('export and import', () => {
-    it('should to be able to give the same results with recommender created by import method', (done) => {
+    it('should to be able to give the same results with recommender created by import method', () => {
       const s = recommender.export();
 
       // create another recommender based on export result
@@ -81,8 +65,6 @@ describe('ContentBasedRecommender', () => {
 
         similarDocuments.should.to.deep.equal(similarDocuments2);
       });
-
-      done();
     });
   });
 });

@@ -24,7 +24,6 @@
   "author": "Stanley Fok <stanleyfok@gmail.com> (https://github.com/stanleyfok)",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.5.1",
     "natural": "^0.5.4",
     "redis-sorted-set": "^2.0.0",
     "stopword": "^0.1.9",
