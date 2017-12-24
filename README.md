@@ -40,9 +40,9 @@ const documents = [
 recommender.train(documents);
 
 //get top 10 similar items to document 1000002
-const similarItems = recommender.getSimilarDocuments('1000002', 0, 10);
+const similarDocuments = recommender.getSimilarDocuments('1000002', 0, 10);
 
-console.log(similarItems);
+console.log(similarDocuments);
 /*
   the higher the score, the more similar the item is
   [
