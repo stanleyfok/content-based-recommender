@@ -65,7 +65,7 @@ To create the recommender instance
 
 Supported options:
 
-* maxVectorSize - the control the max size of word vector after tf-idf processing. A smaller vector size will help training improvement while not affecting recommendation quality. Defaults to be 100.
+* maxVectorSize - the control the max size of word vector after tf-idf processing. A smaller vector size will help training performance while not affecting recommendation quality. Defaults to be 100.
 
 ### train(documents)
 
