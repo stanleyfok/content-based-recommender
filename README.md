@@ -17,6 +17,15 @@ The similarity scores are finally stored in sorted sets data structure, thanks t
 
 I haven't tested how this recommender is performing with a large dataset. I will share more results after some more testing.
 
+## Installation
+
+`npm install content-based-recommender`
+
+And then import the ContentBasedRecommender class
+```js
+const ContentBasedRecommender = require('content-based-recommender')
+```
+
 ## Usage
 
 ```js
