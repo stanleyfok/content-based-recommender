@@ -40,6 +40,16 @@ describe('ContentBasedRecommender', () => {
         });
     });
 
+    it('should also work using callback', (done) => {
+      recommender.train(documents, () => {
+        const similarDocuments = recommender.getSimilarDocuments('1000002', 0);
+
+        similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004', '1000005', '1000003', '1000006', '1000001']);
+
+        done();
+      });
+    });
+
     it('should to be able to control how many similar documents to obtain', (done) => {
       recommender.train(documents)
         .then(() => {
