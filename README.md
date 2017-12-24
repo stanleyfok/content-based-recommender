@@ -4,7 +4,9 @@ Content Based Recommender
 [![Build Status](https://travis-ci.org/stanleyfok/content-based-recommender.png?branch=master)](https://travis-ci.org/stanleyfok/content-based-recommender)
 [![NPM version](https://img.shields.io/npm/v/content-based-recommender.svg)](https://www.npmjs.com/package/content-based-recommender)
 
-This is a simple content-based recommender implemented in javascript to illustrate the concept of content-based recommendation. After the recommender is trained by an array of documents, it can tell the list of documents which are more similar to the input document.
+This is a simple content-based recommender implemented in javascript to illustrate the concept of content-based recommendation. Content-based recommender is a popular recommendation technique to show similar items to users, especially useful to websites for e-commerce, news content, etc.
+
+After the recommender is trained by an array of documents, it can tell the list of documents which are more similar to the input document.
 
 The training process involves 3 main steps:
 * content pre-processing, such as html tag stripping, [stopwords](http://xpo6.com/list-of-english-stop-words/) removal and [stemming](http://9ol.es/porter_js_demo.html)
@@ -12,6 +14,8 @@ The training process involves 3 main steps:
 * find the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) scores between all document vectors
 
 The similarity scores are finally stored in sorted sets data structure, thanks to the javascript implementation of [redis sorted set](https://www.npmjs.com/package/redis-sorted-set).
+
+The library [natural](https://www.npmjs.com/package/natural) also helps a lot by providing a lot of NLP functionalities, such as tf-idf and word stemming.
 
 **⚠️ Note:**
 
