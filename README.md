@@ -13,7 +13,7 @@ The training process involves 3 main steps:
 
 The similarity scores are finally stored in sorted sets data structure, thanks to the javascript implementation of [redis sorted set](https://www.npmjs.com/package/redis-sorted-set).
 
-** ⚠️ Note: **
+**⚠️ Note:**
 
 I haven't tested how this recommender is performing with a large dataset. I will share more results after some more testing.
 
