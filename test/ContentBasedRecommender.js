@@ -67,14 +67,3 @@ describe('ContentBasedRecommender', () => {
     });
   });
 });
-
-// start training
-/*
-recommender.train(documents)
-  .then(() => {
-  // get top 10 similar items to document 1000002
-    const similarItems = recommender.getSimilarItems('1000002', 0, 10);
-
-    console.log(similarItems);
-  });
-*/
