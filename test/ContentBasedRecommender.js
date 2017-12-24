@@ -66,4 +66,23 @@ describe('ContentBasedRecommender', () => {
         });
     });
   });
+
+  describe('export and import', () => {
+    it('should to be able to give the same results with recommender created by import method', (done) => {
+      const s = recommender.export();
+
+      // create another recommender based on export result
+      const recommender2 = new ContentBasedRecommender(s);
+      recommender2.import(s);
+
+      documents.forEach((document) => {
+        const similarDocuments = recommender.getSimilarDocuments(document.id);
+        const similarDocuments2 = recommender2.getSimilarDocuments(document.id);
+
+        similarDocuments.should.to.deep.equal(similarDocuments2);
+      });
+
+      done();
+    });
+  });
 });

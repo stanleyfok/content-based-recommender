@@ -81,6 +81,26 @@ To get an array of similar items with document id
 
 It returns an array of objects, with fields **id** and **score** (ranging from 0 to 1)
 
+### export
+
+To export the recommender as json object.
+```js
+const recommender = new ContentBasedRecommender();
+recommender.train(documents)
+  .then(() => {
+    const object = recommender.export();
+    //can save the object to disk, database or otherwise
+  })
+```
+
+### import(object)
+
+To update the recommender by importing from a json object, exported by the export() method
+```js
+const recommender = new ContentBasedRecommender();
+recommender.import(object); // object can be loaded from disk, database or otherwise
+```
+
 ## Test
 
 ```bash
