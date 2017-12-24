@@ -107,10 +107,6 @@ npm install
 npm run test
 ```
 
-## To-Dos
-
-* add export and import method for the Recommender
-
 ## Authors
 
   - [Stanley Fok](https://github.com/stanleyfok)
