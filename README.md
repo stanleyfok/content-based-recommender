@@ -61,7 +61,7 @@ console.log(similarDocuments);
 
 To create the recommender instance
 
-* options (optional): an object to configure the recommender (**in development**)
+* options (optional): an object to configure the recommender
 
 Supported options:
 
