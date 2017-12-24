@@ -93,8 +93,6 @@ npm run test
 
 ## To-Dos
 
-* add test cases
-* add options for preprocessing options
 * add export and import method for the Recommender
 
 ## Authors
