@@ -25,7 +25,6 @@
   "license": "MIT",
   "dependencies": {
     "natural": "^0.5.4",
-    "redis-sorted-set": "^2.0.0",
     "stopword": "^0.1.9",
     "striptags": "^3.1.1",
     "underscore": "^1.8.3",
