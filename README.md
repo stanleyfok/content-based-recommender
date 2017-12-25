@@ -30,6 +30,12 @@ And then import the ContentBasedRecommender class
 const ContentBasedRecommender = require('content-based-recommender')
 ```
 
+## Major Change Logs
+
+#### 1.1.0
+
+Update to newer version of [vector-object](https://www.npmjs.com/package/vector-object)
+
 ## Usage
 
 ```js

@@ -1,6 +1,6 @@
 {
   "name": "content-based-recommender",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "A simple content-based recommender implemented in javascript",
   "homepage": "https://github.com/stanleyfok/content-based-recommender",
   "repository": {
@@ -29,11 +29,11 @@
     "stopword": "^0.1.9",
     "striptags": "^3.1.1",
     "underscore": "^1.8.3",
-    "vector-object": "^1.1.10"
+    "vector-object": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.13.1",
+    "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "mocha": "^4.0.1"
