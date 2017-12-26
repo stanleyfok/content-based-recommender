@@ -113,7 +113,10 @@ describe('ContentBasedRecommender', () => {
 
   describe('export and import', () => {
     it('should to be able to give the same results with recommender created by import method', () => {
-      const recommender = new ContentBasedRecommender();
+      const recommender = new ContentBasedRecommender({
+        maxSimilarDocuments: 3,
+        minScore: 0.4
+      });
       recommender.train(documents);
 
       const s = recommender.export();

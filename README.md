@@ -30,7 +30,7 @@ And then import the ContentBasedRecommender class
 const ContentBasedRecommender = require('content-based-recommender')
 ```
 
-## Major Change Logs
+## What's New
 
 #### 1.2.0
 
