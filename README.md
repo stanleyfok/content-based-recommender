@@ -32,6 +32,10 @@ const ContentBasedRecommender = require('content-based-recommender')
 
 ## Major Change Logs
 
+#### 1.2.0
+
+Simplify the implementation by not using sorted set data structure to store the similar documents data. Also support the maxSimilarDocuments and minScore options to save memory used by the recommender.
+
 #### 1.1.0
 
 Update to newer version of [vector-object](https://www.npmjs.com/package/vector-object)
@@ -85,6 +89,8 @@ To create the recommender instance
 Supported options:
 
 * maxVectorSize - the control the max size of word vector after tf-idf processing. A smaller vector size will help training performance while not affecting recommendation quality. Defaults to be 100.
+* minScore - the minimum score required to meet to consider it is a similar document. It will save more memory by filtering out documents having low scores. Default is 0.
+* maxSimilarDocuments - the maximum number of similar documents to keep for each document. Default is the [max safe integer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) in javascript.
 
 ### train(documents)
 
