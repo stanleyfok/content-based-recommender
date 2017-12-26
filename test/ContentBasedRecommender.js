@@ -5,10 +5,46 @@ chai.should();
 
 const documents = require('../fixtures/sample-documents');
 
-const recommender = new ContentBasedRecommender();
-
 describe('ContentBasedRecommender', () => {
-  describe('input validation', () => {
+  describe('options validation', () => {
+    it('should only accept maxVectorSize greater than 0', () => {
+      (() => {
+        const recommender = new ContentBasedRecommender({
+          maxVectorSize: -1,
+        });
+        recommender.train(documents);
+      }).should.to.throw('The option maxVectorSize should be integer and greater than 0');
+    });
+
+    it('should only accept maxSimilarDocuments greater than 0', () => {
+      (() => {
+        const recommender = new ContentBasedRecommender({
+          maxSimilarDocuments: -1,
+        });
+        recommender.train(documents);
+      }).should.to.throw('The option maxSimilarDocuments should be integer and greater than 0');
+    });
+
+    it('should only accept minScore between 0 and 1', () => {
+      (() => {
+        const recommender = new ContentBasedRecommender({
+          minScore: -1,
+        });
+        recommender.train(documents);
+      }).should.to.throw('The option minScore should be a number between 0 and 1');
+
+      (() => {
+        const recommender = new ContentBasedRecommender({
+          minScore: 2,
+        });
+        recommender.train(documents);
+      }).should.to.throw('The option minScore should be a number between 0 and 1');
+    });
+  });
+
+  describe('documents validation', () => {
+    const recommender = new ContentBasedRecommender();
+
     it('should only accept array of documents', () => {
       (() => {
         recommender.train({
@@ -30,14 +66,16 @@ describe('ContentBasedRecommender', () => {
 
   describe('training result validation', () => {
     it('should return list of similar documents in right order', () => {
+      const recommender = new ContentBasedRecommender();
       recommender.train(documents);
 
-      const similarDocuments = recommender.getSimilarDocuments('1000002', 0);
+      const similarDocuments = recommender.getSimilarDocuments('1000002');
 
       similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004', '1000005', '1000003', '1000006', '1000001']);
     });
 
     it('should to be able to control how many similar documents to obtain', () => {
+      const recommender = new ContentBasedRecommender();
       recommender.train(documents);
 
       let similarDocuments = recommender.getSimilarDocuments('1000002', 0, 2);
@@ -49,10 +87,35 @@ describe('ContentBasedRecommender', () => {
       similarDocuments = recommender.getSimilarDocuments('1000002', 1, 3);
       similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000004', '1000005', '1000003']);
     });
+
+    it('should to be able to control the minScore of similar documents', () => {
+      const recommender = new ContentBasedRecommender({ minScore: 0.4 });
+      recommender.train(documents);
+
+      documents.forEach((document) => {
+        const similarDocuments = recommender.getSimilarDocuments(document.id);
+        similarDocuments.map(similarDocument => similarDocument.score).forEach((score) => {
+          score.should.to.be.at.least(0.4);
+        });
+      });
+    });
+
+    it('should to be able to control the maximum number of similar documents', () => {
+      const recommender = new ContentBasedRecommender({ maxSimilarDocuments: 3 });
+      recommender.train(documents);
+
+      documents.forEach((document) => {
+        const similarDocuments = recommender.getSimilarDocuments(document.id);
+        similarDocuments.should.to.have.lengthOf.at.most(3);
+      });
+    });
   });
 
   describe('export and import', () => {
     it('should to be able to give the same results with recommender created by import method', () => {
+      const recommender = new ContentBasedRecommender();
+      recommender.train(documents);
+
       const s = recommender.export();
 
       // create another recommender based on export result
