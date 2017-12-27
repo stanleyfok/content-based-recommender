@@ -87,7 +87,7 @@ To create the recommender instance
 Supported options:
 
 * maxVectorSize - the control the max size of word vector after tf-idf processing. A smaller vector size will help training performance while not affecting recommendation quality. Defaults to be 100.
-* minScore - the minimum score required to meet to consider it is a similar document. It will save more memory by filtering out documents having low scores. Default is 0.
+* minScore - the minimum score required to meet to consider it is a similar document. It will save more memory by filtering out documents having low scores. Allowed values range from 0 to 1. Default is 0.
 * maxSimilarDocuments - the maximum number of similar documents to keep for each document. Default is the [max safe integer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER) in javascript.
 
 ### train(documents)
