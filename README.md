@@ -46,7 +46,10 @@ Update to newer version of [vector-object](https://www.npmjs.com/package/vector-
 
 ```js
 const ContentBasedRecommender = require('content-based-recommender')
-const recommender = new ContentBasedRecommender();
+const recommender = new ContentBasedRecommender({
+  minScore: 0.1,
+  maxSimilarDocuments: 100
+});
 
 // prepare documents data
 const documents = [
@@ -70,13 +73,12 @@ const similarDocuments = recommender.getSimilarDocuments('1000002', 0, 10);
 console.log(similarDocuments);
 /*
   the higher the score, the more similar the item is
+  documents with score < 0.1 are filtered because options minScore is set to 0.1
   [
-    { id: '1000009', score: 0.43529868463164245 },
-    { id: '1000004', score: 0.4112506830931031 },
-    { id: '1000005', score: 0.32986852711159986 },
-    { id: '1000003', score: 0.1422285906657209 },
-    { id: '1000006', score: 0.12457999641759732 },
-    { id: '1000001', score: 0.11885606218309874 }
+    { id: '1000004', score: 0.5114304586412038 },
+    { id: '1000009', score: 0.45056313558918837 },
+    { id: '1000005', score: 0.37039308109283564 },
+    { id: '1000003', score: 0.10896767690747626 }
   ]
 */
 ```
