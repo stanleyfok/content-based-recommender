@@ -30,6 +30,10 @@ const ContentBasedRecommender = require('content-based-recommender')
 
 ## What's New
 
+#### 1.3.0
+
+Introduce the use of unigram, bigrams and trigrams when constructing the word vector
+
 #### 1.2.0
 
 Simplify the implementation by not using sorted set data structure to store the similar documents data. Also support the maxSimilarDocuments and minScore options to save memory used by the recommender.

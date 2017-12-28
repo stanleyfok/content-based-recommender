@@ -71,7 +71,7 @@ describe('ContentBasedRecommender', () => {
 
       const similarDocuments = recommender.getSimilarDocuments('1000002');
 
-      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004', '1000005', '1000003', '1000006', '1000001']);
+      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000004', '1000009', '1000005', '1000003', '1000006', '1000001']);
     });
 
     it('should to be able to control how many similar documents to obtain', () => {
@@ -79,13 +79,13 @@ describe('ContentBasedRecommender', () => {
       recommender.train(documents);
 
       let similarDocuments = recommender.getSimilarDocuments('1000002', 0, 2);
-      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000004']);
+      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000004', '1000009']);
 
       similarDocuments = recommender.getSimilarDocuments('1000002', 2);
       similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000005', '1000003', '1000006', '1000001']);
 
       similarDocuments = recommender.getSimilarDocuments('1000002', 1, 3);
-      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000004', '1000005', '1000003']);
+      similarDocuments.map(document => document.id).should.to.have.ordered.members(['1000009', '1000005', '1000003']);
     });
 
     it('should to be able to control the minScore of similar documents', () => {
@@ -115,7 +115,7 @@ describe('ContentBasedRecommender', () => {
     it('should to be able to give the same results with recommender created by import method', () => {
       const recommender = new ContentBasedRecommender({
         maxSimilarDocuments: 3,
-        minScore: 0.4
+        minScore: 0.4,
       });
       recommender.train(documents);
 
