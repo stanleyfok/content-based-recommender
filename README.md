@@ -30,6 +30,10 @@ const ContentBasedRecommender = require('content-based-recommender')
 
 ## What's New
 
+#### 1.4.0
+
+Upgrade dependencies to fix security alerts
+
 #### 1.3.0
 
 Introduce the use of unigram, bigrams and trigrams when constructing the word vector
