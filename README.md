@@ -30,6 +30,17 @@ const ContentBasedRecommender = require('content-based-recommender')
 
 ## What's New
 
+#### 1.5.0
+
+* Added `trainBidirectional(collectionA, collectionB)` to allow recommendations between
+two different datasets
+* Additional metadata can now be added to documents and will be passed through the process
+````
+const documents = [
+  { id: '1000001', content: 'Why studying javascript is fun?', meta:{key:'Hello'}, test: 'Another Param' },
+]
+````
+
 #### 1.4.0
 
 Upgrade dependencies to fix security alerts
@@ -106,6 +117,12 @@ Supported options:
 To tell the recommender about your documents and then it will start training itself.
 
 * documents - an array of object, with fields **id** and **content**
+
+
+### trainBidirectional(collectionA, collectionB)
+
+Works like the normal train function, but it creates recommendations 
+between two different collections instead of within one collection.
 
 ### getSimilarDocuments(id, [start], [size])
 
