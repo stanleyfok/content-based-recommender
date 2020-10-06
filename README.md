@@ -34,12 +34,6 @@ const ContentBasedRecommender = require('content-based-recommender')
 
 * Added `trainBidirectional(collectionA, collectionB)` to allow recommendations between
 two different datasets
-* Additional metadata can now be added to documents and will be passed through the process
-````
-const documents = [
-  { id: '1000001', content: 'Why studying javascript is fun?', meta:{key:'Hello'}, test: 'Another Param' },
-]
-````
 
 #### 1.4.0
 
