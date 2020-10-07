@@ -1,6 +1,6 @@
 {
   "name": "content-based-recommender",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A simple content-based recommender implemented in javascript",
   "homepage": "https://github.com/stanleyfok/content-based-recommender",
   "repository": {
@@ -22,6 +22,12 @@
     "learning"
   ],
   "author": "Stanley Fok <stanleyfok@gmail.com> (https://github.com/stanleyfok)",
+  "contributors": [
+    {
+      "url": "https://github.com/mklueh",
+      "name": "Marian Klühspies"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "natural": "^0.6.3",
