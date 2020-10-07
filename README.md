@@ -14,7 +14,7 @@ The training process involves 3 main steps:
 * document vectors formation using [tf-idf](https://lizrush.gitbooks.io/algorithms-for-webdevs-ebook/content/chapters/tf-idf.html)
 * find the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) scores between all document vectors
 
-Special thanks to the library [natural](https: //www.npmjs.com/package/natural) helps a lot by providing a lot of NLP functionalities, such as tf-idf and word stemming.
+Special thanks to the library [natural](https://www.npmjs.com/package/natural) helps a lot by providing a lot of NLP functionalities, such as tf-idf and word stemming.
 
 **⚠️ Note:**
 
