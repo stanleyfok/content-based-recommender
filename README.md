@@ -31,6 +31,11 @@ const ContentBasedRecommender = require('content-based-recommender')
 
 ## What's New
 
+#### 1.5.0
+
+* Added `trainBidirectional(collectionA, collectionB)` to allow recommendations between
+two different datasets
+
 #### 1.4.0
 
 Upgrade dependencies to fix security alerts
@@ -48,6 +53,8 @@ Simplify the implementation by not using sorted set data structure to store the 
 Update to newer version of [vector-object](https://www.npmjs.com/package/vector-object)
 
 ## Usage
+
+### Single collection
 
 ```js
 const ContentBasedRecommender = require('content-based-recommender')
@@ -87,6 +94,115 @@ console.log(similarDocuments);
   ]
 */
 ```
+
+### Multi collection
+
+This example shows how to automatically match posts with related tags
+
+```js
+const ContentBasedRecommender =  require('content-based-recommender')
+
+const posts = [
+                {
+                  id: '1000001',
+                  content: 'Why studying javascript is fun?',
+                },
+                {
+                  id: '1000002',
+                  content: 'The trend for javascript in machine learning',
+                },
+                {
+                  id: '1000003',
+                  content: 'The most insightful stories about JavaScript',
+                },
+                {
+                  id: '1000004',
+                  content: 'Introduction to Machine Learning',
+                },
+                {
+                  id: '1000005',
+                  content: 'Machine learning and its application',
+                },
+                {
+                  id: '1000006',
+                  content: 'Python vs Javascript, which is better?',
+                },
+                {
+                  id: '1000007',
+                  content: 'How Python saved my life?',
+                },
+                {
+                  id: '1000008',
+                  content: 'The future of Bitcoin technology',
+                },
+                {
+                  id: '1000009',
+                  content: 'Is it possible to use javascript for machine learning?',
+                },
+              ];
+
+const tags = [
+               {
+                 id: '1',
+                 content: 'Javascript',
+               },
+               {
+                 id: '2',
+                 content: 'machine learning',
+               },
+               {
+                 id: '3',
+                 content: 'application',
+               },
+               {
+                 id: '4',
+                 content: 'introduction',
+               },
+               {
+                 id: '5',
+                 content: 'future',
+               },
+               {
+                 id: '6',
+                 content: 'Python',
+               },
+               {
+                 id: '7',
+                 content: 'Bitcoin',
+               },
+             ];
+
+const tagMap = tags.reduce((acc, tag) => {
+  acc[tag.id] = tag;
+  return acc;
+}, {});
+
+const recommender = new ContentBasedRecommender();
+
+recommender.trainBidirectional(posts, tags);
+
+for (let post of posts) {
+  const relatedTags = recommender.getSimilarDocuments(post.id);
+  const tags = relatedTags.map(t => tagMap[t.id].content);
+  console.log(post.content, 'related tags:', tags);
+}
+
+
+/*
+Why studying javascript is fun? related tags: [ 'Javascript' ]
+The trend for javascript in machine learning related tags: [ 'machine learning', 'Javascript' ]
+The most insightful stories about JavaScript related tags: [ 'Javascript' ]
+Introduction to Machine Learning related tags: [ 'machine learning', 'introduction' ]
+Machine learning and its application related tags: [ 'machine learning', 'application' ]
+Python vs Javascript, which is better? related tags: [ 'Python', 'Javascript' ]
+How Python saved my life? related tags: [ 'Python' ]
+The future of Bitcoin technology related tags: [ 'future', 'Bitcoin' ]
+Is it possible to use javascript for machine learning? related tags: [ 'machine learning', 'Javascript' ]
+*/
+
+```
+
+
 ## API
 
 ### constructor([options])
@@ -107,6 +223,12 @@ Supported options:
 To tell the recommender about your documents and then it will start training itself.
 
 * documents - an array of object, with fields **id** and **content**
+
+
+### trainBidirectional(collectionA, collectionB)
+
+Works like the normal train function, but it creates recommendations 
+between two different collections instead of within one collection.
 
 ### getSimilarDocuments(id, [start], [size])
 
